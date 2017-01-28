@@ -103,11 +103,11 @@ body.homepage{
 	width: 70%;
 }
 .chat-info{
-	background-color: white;
+	background-color: #F17327;
 	padding: 10px;
 	color: black;
 	font-size: 20px;
-	color: red;
+	color: 	blue;
 	font-weight: bolder;
 	
 }
@@ -140,6 +140,7 @@ body.homepage{
 	width: 70%;
 	background: white;
 	padding: 10px;
+	background-color: #F17327;
 }
 .chat-message{
 	padding: 10px;
