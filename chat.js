@@ -19,6 +19,8 @@ ifUserIsLoggedIn(function() {
         var chat_id = element.id;
 
         loadMessages(chat_id, function(messages) {
+
+            //console.log("asdsad");
             var messagesList = "";
 
             for (var uid in messages) {

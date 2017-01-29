@@ -12,20 +12,20 @@
     <div class="members-area">
         <div class="user-info">
             <span id="username"></span>
-            <span class="logout">Logout</span>
+            <button class="logout" onclick="logout()">Logout</button>
 
         </div>
         <div class="members" id="members"></div>
     </div>
     <div class="message-area">
         <div class="chat-info">
-            Maitreya
+
         </div>
         <div class="messages" id="messages"></div>
         <div class="chat-form">
           <input type="hidden" id="chat-id" />
             <input type="text" id="message-text" class="chat-message" placeholder="Write your message here.">
-            <button id="send-button">Send</button>
+            <button id="send-button" class="btn-send">Send</button>
         </div>
     </div>
 

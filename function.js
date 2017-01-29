@@ -117,6 +117,8 @@ function loadMessages(chat_id, fn) {
     var database = firebase.database();
     var chatsRef = database.ref("chats");
 
+    console.log(chatsRef);
+
     chatsRef.child(chat_id).on('value', function(snapshot) {
         var messages = snapshot.val();
 
@@ -126,7 +128,7 @@ function loadMessages(chat_id, fn) {
 
 function renderMessage(message) {
     var text = message.text;
-    var msgClass = "message by-user";
+    var msgClass = "message";
 
     if (message.sender_id == window.currentUser.id) {
         msgClass = "message by-user";
@@ -149,5 +151,14 @@ function sendMessage(chat_id,text) {
 
   chat.child(newMessageId).set(message);
 
+}
 
+
+function logout() {
+  firebase.auth().signOut().then(function() {
+    console.log('Signed Out');
+    redirect("https://maitreyapatel.github.io/Snappy-chat/");
+  }, function(error) {
+    console.error('Sign Out Error', error);
+  });
 }

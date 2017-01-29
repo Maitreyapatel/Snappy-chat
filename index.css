@@ -176,11 +176,27 @@ body.homepage{
 	background-color: #F17327;
 }
 .chat-message{
-	display: black;
+	display: black;float: left;
 
-	width: 100%;
+	width: 90%;
 	padding: 10px;
 
 	border: solid 1px lightgreen;
-	border-radius: 4px;
+	border-radius: 20px;
+}
+.btn-send{
+  float: right;
+  margin-top: 5px;
+  width: 10%;
+
+  color: rgb(201, 215, 157);
+  border-radius: 15px;
+  background-color: red;
+}
+
+.logout{
+  background-color: red;
+  color: rgb(201, 215, 157);
+
+  border-radius: 6px;
 }
