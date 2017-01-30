@@ -18,6 +18,29 @@ ifUserIsLoggedIn(function() {
     onClickMultiple("member", function(element) {
         var chat_id = element.id;
 
+        var database = firebase.database();
+        var usersRef = database.ref("users");
+
+        usersRef.on('value', function(snapshot) {
+            var users = snapshot.val();
+
+            for (var uid in users) {
+                var user = users[uid];
+
+                //if (window.currentUser.id != uid)
+                    //for (var uid in users) {
+                      //  var user = users[uid];
+
+                        //if (chat_id == uid+""+window.currentUser.id)
+                        //UName(user);
+                        if(getChatId(window.currentUser.id,uid)==chat_id){
+                        var ul=renderUser1(user);
+
+                        UName(ul);
+                      }
+                        //  }
+            }
+        });
         loadMessages(chat_id, function(messages) {
 
             //console.log("asdsad");
@@ -38,9 +61,9 @@ ifUserIsLoggedIn(function() {
 
     click("send-button", function() {
         var text = getElement("message-text").value;
-        var chat_id=getElement("chat-id").value;
+        var chat_id = getElement("chat-id").value;
 
-        sendMessage(chat_id,text);
-        text.textContent="";
+        sendMessage(chat_id, text);
+        clearfields();
     });
 });

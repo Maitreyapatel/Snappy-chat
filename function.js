@@ -97,6 +97,15 @@ function renderUser(user) {
     return html;
 }
 
+function renderUser1(user) {
+    var uid = user.id;
+    var chat_id = getChatId(window.currentUser.id, uid);
+    var name = user.name;
+    var html = '<div id="' + chat_id + '" class="member">' + name + '</div>';
+
+    return name;
+}
+
 function getChatId(id1, id2) {
     if (id1 > id2) {
         return id1 + " " + id2;
@@ -161,4 +170,12 @@ function logout() {
   }, function(error) {
     console.error('Sign Out Error', error);
   });
+}
+
+function UName(name) {
+  var uName=document.getElementById('chat-in').innerHTML= name;
+}
+
+function clearfields() {
+  document.getElementById("message-text").value="";
 }
