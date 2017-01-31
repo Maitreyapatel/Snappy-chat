@@ -5,12 +5,10 @@ function click(elementId, fn) {
         element.addEventListener("click", fn);
     }
 }
-
 function redirect(path) {
     window.location = path;
     return false;
 }
-
 function loginWithGoogle() {
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function(result) {
@@ -20,7 +18,9 @@ function loginWithGoogle() {
         var user = result.user;
 
         //create user
-        createUser(user.uid, user.displayName, user.email);
+        createUser(user.uid, user.displayName, user.email,user.photoURL);
+           //idp:user.photoURL};
+        //console.log(window.photo.idp);
     }).catch(function(error) {
         // Handle Errors here.
         console.log(error.message);
@@ -35,19 +35,39 @@ function logInUser() {
     loginWithGoogle();
 }
 
-function createUser(uid, uname, uemail) {
+function createUser(uid, uname, uemail,photo) {
     var database = firebase.database();
     var usersRef = database.ref("users");
 
     var user = {
         id: uid,
         name: uname,
-        email: uemail
+        email: uemail,
+        photoId: photo
     };
 
     usersRef.child(uid).set(user).then(function() {
         redirect("chat.html");
+
     });
+}
+
+function insert(){
+    var src = document.getElementById("gamediv");
+    var img = document.createElement("img");
+    img.src = window.currentUser.photo;
+    img.height=40;
+    img.width=30;
+    img.style.borderRadius="50%;";
+    src.appendChild(img);
+    img.style.borderRadius = "25px";
+    console.log(window.currentUser.photo);
+    
+}
+
+function uPhoto() {
+  console.log(photo);
+ return document.write(photo);
 }
 
 function ifUserIsLoggedIn(fn) {
@@ -57,9 +77,10 @@ function ifUserIsLoggedIn(fn) {
             window.currentUser = {
                 id: user.uid,
                 name: user.displayName,
-                email: user.email
+                email: user.email,
+                  photo: user.photoURL
             };
-
+            insert();
             fn();
         } else {
             // No user is signed in.
@@ -76,6 +97,11 @@ function updateUserData() {
 
     usernameElement.textContent = window.currentUser.name;
 }
+
+//function uPhoto() {
+  //var usernameElement = getElement("username");
+//  show_image(window.photo);
+//}
 
 function loadUsers(fn) {
     var database = firebase.database();
