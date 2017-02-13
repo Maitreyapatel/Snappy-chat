@@ -205,3 +205,11 @@ function UName(name) {
 function clearfields() {
   document.getElementById("message-text").value="";
 }
+
+document.getElementById("message-text")
+    .addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode == 13) {
+        document.getElementById("send-button").click();
+    }
+});
